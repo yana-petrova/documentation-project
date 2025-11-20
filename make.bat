@@ -6,15 +6,15 @@ set "SOURCES=intro.md methods.md results.md math.md references.md"
 
 if "%1"=="" (
     echo Сборка всех документов...
-    pandoc %SOURCES% --include-in-header=style.html --standalone --toc --css=style.css -o "documentation.html" && echo ✓ documentation.html создан
-    pandoc %SOURCES% --standalone --toc -o "documentation.docx" && echo ✓ documentation.docx создан
+    pandoc %SOURCES% --citeproc --bibliography=references.bib --csl=gost-custom.csl --include-in-header=style.html --standalone --toc --css=style.css -o "documentation.html" && echo ✓ documentation.html создан
+    pandoc %SOURCES% --citeproc --bibliography=references.bib --csl=gost-custom.csl --standalone --toc -o "documentation.docx" && echo ✓ documentation.docx создан
     echo Все документы собраны!
 ) else if "%1"=="html" (
     echo Сборка HTML...
-    pandoc %SOURCES% --include-in-header=style.html --standalone --toc --css=style.css -o "documentation.html" && echo ✓ documentation.html создан
+    pandoc %SOURCES% --citeproc --bibliography=references.bib --csl=gost-custom.csl --include-in-header=style.html --standalone --toc --css=style.css -o "documentation.html" && echo ✓ documentation.html создан
 ) else if "%1"=="docx" (
     echo Сборка DOCX...
-    pandoc %SOURCES% --standalone --toc -o "documentation.docx" && echo ✓ documentation.docx создан
+    pandoc %SOURCES% --citeproc --bibliography=references.bib --csl=gost-custom.csl --standalone --toc -o "documentation.docx" && echo ✓ documentation.docx создан
 ) else if "%1"=="clean" (
     echo Очистка...
     if exist "documentation.html" (
@@ -36,5 +36,5 @@ if "%1"=="" (
     echo   make help   - показать эту справку
 ) else (
     echo Неизвестная команда: %1
-    echo Используйте "make help" для справки
+    echo Используйте "make help" для справку
 )
