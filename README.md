@@ -47,8 +47,11 @@ documentation-project/
 
 ```make clean```   # Удаление собранных документов
 
+<img width="832" height="1192" alt="image" src="https://github.com/user-attachments/assets/fae800e0-b93b-4347-957d-4beda78a4afb" />
+
 
 <img width="849" height="1202" alt="image" src="https://github.com/user-attachments/assets/19ba3ad4-d617-4352-b3ce-b1b7664335b1" />
+
 
 
 
