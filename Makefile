@@ -1,45 +1,70 @@
+# Makefile for documentation building
+
 # Variables
-PANDOC = pandoc
 SOURCES = intro.md methods.md results.md math.md references.md
-STYLES = style.html style.css
+HTML_FILE = documentation.html
+DOCX_FILE = documentation.docx
 BIBLIOGRAPHY = references.bib
+CSL = gost-custom.csl
 
-# Targets
-all: documentation.pdf documentation.docx documentation.html
+# Pandoc main settings
+PANDOC_COMMON_FLAGS = --citeproc --bibliography=$(BIBLIOGRAPHY) --csl=$(CSL) --standalone --toc
+PANDOC_HTML_FLAGS = $(PANDOC_COMMON_FLAGS) --mathjax --include-in-header=style.html
+PANDOC_DOCX_FLAGS = $(PANDOC_COMMON_FLAGS)
 
-# PDF with LaTeX formulas
-documentation.pdf: $(SOURCES) $(BIBLIOGRAPHY)
-	$(PANDOC) $(SOURCES) --filter pandoc-citeproc --bibliography=$(BIBLIOGRAPHY) \
-	--standalone --toc --pdf-engine=xelatex -o documentation.pdf
+# Default goals
+.DEFAULT_GOAL := all
 
-# DOCX document
-documentation.docx: $(SOURCES) $(BIBLIOGRAPHY)
-	$(PANDOC) $(SOURCES) --filter pandoc-citeproc --bibliography=$(BIBLIOGRAPHY) \
-	--standalone --toc -o documentation.docx
+# File goals
+.PHONY: all html docx clean clean-html clean-docx help
 
-# HTML website with math support
-documentation.html: $(SOURCES) $(STYLES) $(BIBLIOGRAPHY)
-	$(PANDOC) $(SOURCES) --filter pandoc-citeproc --bibliography=$(BIBLIOGRAPHY) \
-	--include-in-header=style.html --standalone --toc --css=style.css \
-	--mathjax -o documentation.html
+# Build all documents
+all: html docx
 
-# Individual targets
-pdf: documentation.pdf
-docx: documentation.docx
-html: documentation.html
+# Build HTML document
+html: $(HTML_FILE)
 
-# Clean build artifacts
-clean:
-	rm -f documentation.pdf documentation.docx documentation.html
+$(HTML_FILE): $(SOURCES)
+	@pandoc $(SOURCES) $(PANDOC_HTML_FLAGS) -o "$(HTML_FILE)"
+	@echo "$(HTML_FILE) created"
+
+# Build DOCX document
+docx: $(DOCX_FILE)
+
+$(DOCX_FILE): $(SOURCES)
+	@pandoc $(SOURCES) $(PANDOC_DOCX_FLAGS) -o "$(DOCX_FILE)"
+	@echo "$(DOCX_FILE) created"
+
+# Clean all files
+clean: clean-html clean-docx
+
+# Clean only HTML
+clean-html:
+	@if exist "$(HTML_FILE)" ( \
+		del "$(HTML_FILE)" && echo "$(HTML_FILE) deleted" \
+	) else ( \
+		echo "$(HTML_FILE) does not exist" \
+	)
+
+# Clean only DOCX 
+clean-docx:
+	@if exist "$(DOCX_FILE)" ( \
+		del "$(DOCX_FILE)" && echo "$(DOCX_FILE) deleted" \
+	) else ( \
+		echo "$(DOCX_FILE) does not exist" \
+	)
 
 # Help
 help:
-	@echo "Available targets:"
-	@echo "  make all    - Build all formats (PDF, DOCX, HTML)"
-	@echo "  make pdf    - Build PDF only"
-	@echo "  make docx   - Build DOCX only"
-	@echo "  make html   - Build HTML website only"
-	@echo "  make clean  - Remove generated files"
-	@echo "  make help   - Show this help"
-
-.PHONY: all pdf docx html clean help
+	@echo Available commands:
+	@echo   make all           - build all documents (HTML and DOCX)
+	@echo   make html          - build only HTML document
+	@echo   make docx          - build only DOCX document
+	@echo   make clean         - delete all generated files
+	@echo   make clean-html    - delete only HTML file
+	@echo   make clean-docx    - delete only DOCX file
+	@echo   make help          - show this help
+	@echo.
+	@echo Examples:
+	@echo   make clean html    - clean and rebuild HTML
+	@echo   make clean docx    - clean and rebuild DOCX
