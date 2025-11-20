@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>intro</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <style>
+  .container,
+  article,
+  section {
+      max-width: none !important;
+      width: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+  }
+  body {
+      font-family: "Times New Roman", serif;
+      font-size: 14pt;
+      margin: 1.87cm 1.95cm 2.43cm 1.95cm;
+      counter-reset: figure-counter table-counter; /* Счетчик для рисунков */
+  }
+  h2, h1 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 14pt;
+      margin: 8pt 0;
+      padding: 0;
+      font-style: italic;
+  }
+  p {
+      text-align: justify;
+      text-justify: inter-word;
+      text-indent: 0.9cm;
+      line-height: 0.97;
+      margin: 0;
+      padding: 0;
+  }
+  .center-heading {
+      text-align: center;
+      font-weight: bold;
+      margin: 5pt 0;
+      padding: 0;
+  }
+
+  /* Стили для изображений с автоматической нумерацией */
+  .figure-container {
+      text-align: center;
+      margin: 15pt 0;
+      padding: 0;
+      counter-increment: figure-counter; /* Увеличиваем счетчик для каждого рисунка */
+  }
+
+  .figure-container img {
+      width: 20cm;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+  }
+
+  .figure-caption {
+      text-align: center;
+      margin: 5pt 0 0 0;
+      padding: 0;
+      text-indent: 0;
+      font-style: normal;
+  }
+
+  .figure-caption::before {
+      content: "Рис. " counter(figure-counter) ". ";
+      font-weight: normal;
+  }
+
+  /* Стили для таблиц с автоматической нумерацией */
+  .table-container {
+      margin: 8pt 0;
+      text-align: center;
+  }
+
+  .table-caption {
+      text-align: left;
+      margin: 10pt 0 0pt 0;
+      padding: 0;
+      text-indent: 0;
+      font-style: normal;
+      counter-increment: table-counter;
+  }
+
+  .table-caption::before {
+      content: "Таблица " counter(table-counter) ". ";
+      font-weight: normal;
+  }
+
+  table {
+      margin: 10pt auto;
+      border-collapse: collapse;
+      border: 1px solid black;
+  }
+  table th, table td {
+      border: 1px solid black;
+      padding: 4px 8px;
+  }
+  table td:nth-child(2),
+  table td:nth-child(3),
+  table td:nth-child(4) {
+      text-align: right;
+  }
+
+  /* Стиль для автоматических ссылок на рисунки */
+  a.figure-link {
+      text-decoration: none;
+      color: #000;
+      border-bottom: 1px dotted #000;
+  }
+
+  ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+  }
+  ul li {
+      text-align: justify;
+      text-justify: inter-word;
+      text-indent: 1.4cm;
+      line-height: 0.97;
+      padding-left: 0;
+      margin-left: 0;
+      position: relative;  
+  }
+  ul li:before {
+      text-indent: 0.9cm;
+      content: "– ";
+      position: absolute;
+      left: 0;
+  }
+
+  ol {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      counter-reset: item;
+  }
+  ol li {
+      text-align: justify;
+      text-justify: inter-word;
+      text-indent: 1.6cm;
+      line-height: 0.97;
+      padding-left: 0;
+      margin-left: 0;
+      position: relative;
+      counter-increment: item;
+  }
+  ol li:before {
+      text-indent: 0.9cm;
+      content: counter(item) ". ";
+      position: absolute;
+      left: 0;
+  }
+
+  /* Контейнер для изображения */
+  p:has(> img) {
+      text-align: center;
+      margin: 8pt 0;
+      padding: 0;
+      counter-increment: figure-counter;
+  }
+
+  /* Стиль для изображения */
+  p:has(> img) img {
+      display: block;
+      margin: 0 auto;
+      width: 20cm;
+      height: auto;
+      max-width: 100%;
+  }
+
+  /* Стиль для подписи (следующий параграф после изображения) */
+  p:has(> img) + p {
+      text-align: center;
+      margin: 0 0 8pt 0;
+      padding: 0;
+      text-indent: 0;
+      font-style: normal;
+  }
+  p:has(> img) + p::before {
+      content: "Рис. " counter(figure-counter) ". ";
+      font-weight: normal;
+  }
+
+  /* Стиль для параграфа перед таблицей (будет использоваться как подпись таблицы) */
+  p:has(+ table) {
+      text-indent: 0;
+      text-align: left;
+      font-weight: normal;
+      margin: 8pt 0 0pt 0;
+      padding: 0;
+      counter-increment: table-counter;
+  }
+
+  p:has(+ table)::before {
+      content: "Таблица " counter(table-counter) ". ";
+      font-weight: normal;
+  }
+
+  table {
+      margin: 5pt auto 10pt auto; 
+      border-collapse: collapse;
+      border: 1px solid black;
+  }
+
+  #TOC {
+      margin: 32px 0;
+      padding: 0;
+      border: none;
+      page-break-after: always;
+      font-family: "Times New Roman", serif;
+      font-size: 14pt;
+  }
+  #TOC::before {
+      content: "Оглавление";
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 14pt;
+  }
+  #TOC ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+  }
+
+  #TOC li {
+      text-indent: 0;
+      line-height: 0.97; /* Уменьшаем межстрочный интервал */
+      margin: 0px 0; /* Уменьшаем отступы между пунктами */
+      padding-left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      position: relative;
+  }
+
+  #TOC a {
+      text-decoration: none;
+      color: #000;
+      flex-grow: 0; /* Убираем растягивание */
+      border-bottom: none; /* Убираем границу */
+      margin-right: 0px; /* Минимальный отступ */
+      order: 1;
+      font-weight: normal;
+      position: relative;
+      z-index: 1;
+      background: white;
+      padding-right: 5px;
+  }
+
+  /* Точечная линия на всю ширину */
+  #TOC li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 3px;
+      border-bottom: 1px dotted #000;
+      z-index: 0;
+  }
+
+  /* Уровни вложенности */
+  #TOC ul ul {
+      padding-left: 1.5cm;
+  }
+
+  #TOC > ul > li {
+      font-weight: normal;
+  }
+
+  #TOC ul ul li {
+      font-weight: normal;
+  }
+
+  /* Стили для библиографии 
+  #refs {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      counter-reset: item;
+  }
+
+  #refs {
+      text-align: justify;
+      text-justify: inter-word;
+      text-indent: 1cm;
+      line-height: 0.97;
+      padding-left: 0;
+      margin-left: 0;
+      position: relative;
+      counter-increment: item;
+      margin-bottom: 0.3cm;
+  }
+
+  #refs > div:before {
+      display: none;
+  }*/
+
+  /* Стили для библиографии */
+  #refs {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      text-align: justify;
+      text-justify: inter-word;
+      text-indent: 1cm;
+      line-height: 0.97;
+  }
+
+  /* Стили для КАЖДОГО элемента библиографии */
+  #refs > div {
+      text-indent: 1cm;
+      line-height: 0.97;
+      margin-bottom: 0.3cm;
+      position: relative;
+  }
+
+  #refs > div:before {
+      display: none;
+  }
+
+  /* Ссылки */
+  #refs a {
+      color: #000000;
+      text-decoration: none;
+      border-bottom: none !important;
+  }
+
+  /* Убрать любые границы у ссылок */
+  #refs a[href] {
+      border-bottom: none !important;
+      text-decoration: none !important;
+  }
+
+  /* Автоматическая нумерация ссылок на рисунки */
+  /* Стиль для ссылок на рисунки */
+  a[href^="#ris"] {
+      text-decoration: none;
+      color: #000;
+  }
+
+
+
+  </style>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Собираем все изображения и создаем карту якорь -> номер
+      const figureMap = new Map();
+      const images = document.querySelectorAll('img[src*="ris"]');
+      
+      images.forEach((img, index) => {
+          const container = img.closest('[id]') || img.parentElement;
+          if (container && container.id) {
+              figureMap.set(container.id, index + 1);
+          }
+      });
+      
+      // Обновляем все ссылки на рисунки
+      const links = document.querySelectorAll('a[href^="#ris"]');
+      links.forEach(link => {
+          const href = link.getAttribute('href');
+          const anchorId = href.substring(1); // убираем #
+          const figureNumber = figureMap.get(anchorId);
+          
+          if (figureNumber) {
+              // Заменяем содержимое ссылки на номер рисунка
+              link.textContent = figureNumber;
+          }
+      });
+  });
+  </script>
+
+  <html>
+  <head>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#введение" id="toc-введение">Введение</a></li>
+<li><a href="#методы-и-материалы" id="toc-методы-и-материалы">Методы и
+материалы</a></li>
+<li><a href="#результаты" id="toc-результаты">Результаты</a></li>
+<li><a href="#список-литературы" id="toc-список-литературы">Список
+литературы</a></li>
+</ul>
+</nav>
+<h2 id="введение">Введение</h2>
+<p>В настоящий момент ООО «Стеклосервис» использует конфигурацию
+1С:Управление торговлей редакции 10.3 без возможности обновления. В
+данной редакции отсутствуют необходимые, удовлетворяющие требованиям
+предприятия средства для выгрузки данных в 1С:Бухгалтерия редакции 3.0.
+Также компании требуется дополнительная настройка интеграции данных.</p>
+<p>Отсутствие такого программного модуля усложняет автоматизацию
+бизнес-процессов предприятия и затрудняет эффективное управление
+данными.</p>
+<p>Внедрение программного модуля для интеграции данных между системами
+поможет оказать значительную помощь в деятельности компании. Такой
+модуль обеспечит упрощенную передачу информации из 1С:Управление
+торговлей в 1С:Бухгалтерия, что облегчит процессы учета и управления
+торговлей. Это позволит минимизировать ручное вмешательство и уменьшить
+вероятность ошибок при передаче данных, а также сэкономить время и силы,
+которые ранее были бы затрачены на ручной ввод и согласование
+данных.</p>
+<h2 id="методы-и-материалы">Методы и материалы</h2>
+<p>Разрабатываемый программный модуль соответствует следующим
+требованиям:</p>
+<ul>
+<li>программный модуль совместим с 1С:Управление торговлей редакции 10.3
+и 1С:Бухгалтерия редакции 3.0;</li>
+<li>данные переносятся из 1С:Управление торговлей в 1С:Бухгалтерия;</li>
+<li>из документа «Платежный ордер: поступление денежных средств» в
+документ «Поступление на расчетный счет»;</li>
+<li>возможность указания периода, за который должны быть выгружены
+документы «Платежный ордер: поступление денежных средств»;</li>
+<li>возможность выбора конкретных документов из файла выгрузки при
+загрузке данных;</li>
+<li>настройка соответствия загруженных данных с уже существующими.</li>
+</ul>
+<p>Модуль не исключает полностью участие пользователя в процессе
+переноса данных. Пользователю необходимо настроить модуль в соответствии
+с индивидуальными потребностями предприятия, запустить процессы выгрузки
+и загрузки данных, проконтролировать перенос данных и при необходимости
+внести коррективы.</p>
+<p>Для корректной и эффективной реализации поставленной задачи по
+разработке программного модуля были предоставлены и тщательно
+проанализированы базы данных предприятия: 1С:Управление торговлей (ред.
+10.3) и 1С:Бухгалтерия (ред. 3.0). Важно отметить, что внесение
+изменений в исходные данные баз 1С не предполагалось. Поэтому при
+разработке модуля необходимо было ориентироваться на уже существующие
+структуры, форматы и взаимосвязи документов.</p>
+<p>Разработка модуля осуществлялась с применением внешних обработок в
+обеих конфигурациях 1С. Они позволяют расширить функционал программы за
+её пределами, интегрировать дополнительные возможности и выполнять
+сложные операции, не предусмотренные стандартными средствами.</p>
+<p>Обработки 1С – это специальные объекты конфигурации, предназначенные
+для облегчения работы пользователей или администраторов баз. Они
+способствуют автоматизации и ускорению выполнения рутинных задач <span
+class="citation" data-cites="суханова2023разработка">[1]</span>. Внешние
+обработки представляют собой обработки, которые не входят в состав
+прикладного решения и хранятся в отдельных файлах с расширением *.epf.
+Основное их преимущество заключается в том, что такие обработки можно
+использовать в различных прикладных решениях без изменения структуры
+самих решений <span class="citation"
+data-cites="зарипова2023разработка">[2]</span>.</p>
+<p>Процесс обмена данными между системами «1С:Управление торговлей» и
+«1С:Бухгалтерия» осуществляется посредством XML-файлов. При выгрузке из
+«1С:Управление торговлей» информация из документов структурируется и
+сохраняется в формате XML. Затем, модуль интеграции в «1С:Бухгалтерия»
+считывает данные из этого файла и, после настройки соответствия
+пользователем, преобразует их в соответствующие документы бухгалтерского
+учета.</p>
+<h2 id="результаты">Результаты</h2>
+<p>Результаты разработки программного модуля для интеграции данных между
+системами 1С:Управление торговлей и 1С:Бухгалтерия представлены ниже.
+Сперва сотрудник открывает систему 1С:Управление торговлей и
+авторизовывается в ней. Переходит в пункт главного меню «Сервис», откуда
+появляется выпадающий список, в нём находит элемент «Внешние печатные
+формы и обработка», далее выбирает «Внешние обработки». Далее
+открывается форма со всеми внешними обработками предприятия, система
+предлагает выбрать пользователю нужный объект, сотрудник выбирает
+«Выгрузка в БП». Далее открывается форма внешней обработки. Пользователь
+должен указать начало и конец периода, за который должны быть выгружены
+документы. После этого сотрудник выбирает каталог, где будет сохранен
+XML файл, в котором хранятся данные выгруженных документов. Выбор
+каталога возможно осуществить как вручную, так и при помощи диалогового
+окна (рисунок <a href="#ris1.png"></a>).</p>
+<p><img src="images\ris1.png" id="ris1.png" /></p>
+<p>Форма выгрузки документов</p>
+<!--<div class="image-container">
+![Рис. 1. Форма выгрузки документов](images/ris1.png)-->
+<p>Если данные на форме были заполнены корректно, то программный модуль
+создает и сохранит XML файл с данными документов и выведет окно,
+сообщающее об успешной операции и количестве выгруженных документов.</p>
+<p>Открыв каталог выгрузки, который ранее был выбран на форме внешней
+обработки, можно увидеть сохраненный файл с данными документов (рисунок
+<a href="#ris1.png"></a>). В названии файла сохраняется дата и время
+проведения операции выгрузки информации.</p>
+<p>Далее, чтобы загрузить данные, сотрудник авторизовывается и заходит в
+систему 1С – «Бухгалтерия предприятия». После этого в пункте меню
+«Администрирование» переходит в раздел «Настройки программы», в нем
+нажимает на «Печатные формы, отчеты и обработки». После этого находит
+пункт «Дополнительные отчеты и обработки», по нажатию на который
+открывается форма со всеми отчетами и обработками, где пользователь
+увидит внешнюю обработку «Загрузка из УТ». Нажав на неё, откроется
+первая форма внешней обработки. Здесь пользователь указывает файл
+выгрузки, с которым будет работать программный модуль (рисунок <a
+href="#ris3.png"></a>).</p>
+<p><img src="images\ris3.png" id="ris3.png" /></p>
+<p>Форма выбора файла выгрузки</p>
+<p>Нажав кнопку «Далее», открывается форма выбора документов для
+загрузки (рисунок <a href="#ris2.png"></a>). В ней перечислена основная
+информация о выгруженных документов в виде таблицы. У сотрудника есть
+возможность выбрать все или только необходимые ему документы для
+загрузки.</p>
+<p><img src="images\ris2.png" id="ris2.png" /></p>
+<p>Форма выбора документов для загрузки</p>
+<p>Следующим этапом в программном модуле является настройка загруженных
+данных с уже существующими. Ввиду специфики записи части данных в
+документ в виде различных объектов конфигураций, настройка загруженных
+данных гарантирует, что новая информация будет интегрирована в систему
+правильно и эффективно, поддерживая ее целостность и стабильность. Далее
+идут формы настройки организаций, контрагентов и банковских счетов на
+рисунках <a href="#ris4.png"></a>, <a href="#ris5.png"></a>, <a
+href="#ris6.png"></a> соответственно. В левых столбцах представлены
+данные выгруженные из 1С:Управление торговлей, а в правых данные,
+которые будут использованы в загружаемых документах.</p>
+<p><img src="images\ris4.png" id="ris4.png" /></p>
+<p>Форма настройки соответствия организаций</p>
+<p><img src="images\ris5.png" id="ris5.png" /></p>
+<p>Форма настройки соответствия контрагентов</p>
+<p><img src="images\ris6.png" id="ris6.png" /></p>
+<p>Форма настройки соответствия договоров</p>
+<p>Выполнив последний этап настройки соответствия данных и нажав кнопку
+«Далее», сотрудник видит форму с основной информацией о загруженных
+документах. В столбце «Реализация в бух.» можно увидеть ссылку с
+уникальным номером на каждый документ.</p>
+<p>Для наглядности представления результатов загрузки ниже приведена
+сводная таблица с статистикой обработанных документов:</p>
+<p>Статистика обработки документов при интеграции между 1С:УТ и
+1С:Бухгалтерия</p>
+<table>
+<thead>
+<tr>
+<th>Тип документа</th>
+<th>Количество</th>
+<th>Успешно</th>
+<th>С ошибками</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Платежные ордера: поступление денежных средств</td>
+<td>42</td>
+<td>40</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Счета-фактуры</td>
+<td>28</td>
+<td>27</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Накладные</td>
+<td>35</td>
+<td>34</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Акты выполненных работ</td>
+<td>19</td>
+<td>18</td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>Итого:</strong></td>
+<td><strong>124</strong></td>
+<td><strong>119</strong></td>
+<td><strong>5</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Как видно из таблицы, большинство документов было обработано успешно.
+Документы с ошибками требуют дополнительной проверки и могут быть
+загружены повторно после исправления.</p>
+<p>Для наглядности представления результатов загрузки ниже приведена
+сводная таблица с статистикой обработанных документов:</p>
+<p>Статистика исправленных документов</p>
+<table>
+<thead>
+<tr>
+<th>Тип документа</th>
+<th>Количество</th>
+<th>Успешно</th>
+<th>С ошибками</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Платежные ордера: поступление денежных средств</td>
+<td>42</td>
+<td>42</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Счета-фактуры</td>
+<td>28</td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Накладные</td>
+<td>35</td>
+<td>35</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Акты выполненных работ</td>
+<td>19</td>
+<td>19</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Итого:</strong></td>
+<td><strong>124</strong></td>
+<td><strong>124</strong></td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Пусть <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> –
+последовательность независимых и одинаково распределенных случайных
+величин с <span class="math inline">\(\text{E}[X_i] = \mu\)</span> и
+<span class="math inline">\(\text{Var}[X_i] = \sigma^2 &lt;
+\infty\)</span>, и <span class="math display">\[S_n = \frac{X_1 + X_2 +
+\cdots + X_n}{n} = \frac{1}{n}\sum_{i}^{n} X_i\]</span> обозначим их
+среднее значение. Затем, когда <span class="math inline">\(n\)</span>
+приближается к бесконечности, случайные величины <span
+class="math display">\[\sqrt{n}(S_n - \mu)\]</span> сходятся в
+распределении к нормальному <span class="math inline">\(\mathcal{N}(0,
+\sigma^2)\)</span>.</p>
+<h2 id="список-литературы">Список литературы</h2>
+<!--1. ⠀⠀Суханова, А. А. Разработка автоматизированной информационной системы на платформе «1С:Предприятие 8.3» для учета и контроля договоров / А. А. Суханова, Н. В. Хмелькова // Новые информационные технологии в образовании: сборник научных трудов XXIII Международной научно-практической конференции, 2023. Том 1. – Москва: ООО «1С-Паблишинг», 2023. – С. 408-410. – EDN LTDECO. – URL: https://elibrary.ru/item.asp?id=53764760 (дата обращения: 30.09.2025).
+
+1. ⠀⠀Зарипова, Р. С. Разработка программного продукта для автоматизации процесса продаж оптовой продукции / Р. С. Зарипова, Д. И. Ильина // Экономика и предпринимательство. – 2021. – № 12 (137). – С. 1242-1245. – EDN XHQWBU. – URL: https://cyberleninka.ru/article/n/razrabotka-programmnogo-produkta-dlya-avtomatizatsii-protsessa-prodazh-optovoy-produktsii (дата обращения: 30.09.2025).-->
+<div id="refs" class="references csl-bib-body" role="list">
+<div id="ref-суханова2023разработка" class="csl-entry" role="listitem">
+1. Суханова, А. А., Хмелькова, Н. В. Разработка автоматизированной
+информационной системы на платформе «1С:Предприятие 8.3» для учета и
+контроля договоров / А. А. Суханова, Н. В. Хмелькова // Новые
+информационные технологии в образовании: сборник научных трудов XXIII
+Международной научно-практической конференции, 2023. – Том 1. – Москва:
+ООО «1С-Паблишинг». – С. 408–410. – EDN LTDECO. – URL: <a
+href="https://elibrary.ru/item.asp?id=53764760">https://elibrary.ru/item.asp?id=53764760</a>
+(дата обращения: 30.09.2025).
+</div>
+<div id="ref-зарипова2023разработка" class="csl-entry" role="listitem">
+2. Зарипова, Р. С., Ильина, Д. И. Разработка программного продукта для
+автоматизации процесса продаж оптовой продукции / Р. С. Зарипова, Д. И.
+Ильина, 2021. – № 12 (137). – С. 1242–1245. – EDN XHQWBU. – URL: <a
+href="https://cyberleninka.ru/article/n/razrabotka-programmnogo-produkta-dlya-avtomatizatsii-protsessa-prodazh-optovoy-produktsii">https://cyberleninka.ru/article/n/razrabotka-programmnogo-produkta-dlya-avtomatizatsii-protsessa-prodazh-optovoy-produktsii</a>
+(дата обращения: 30.09.2025).
+</div>
+</div>
+</body>
+</html>
